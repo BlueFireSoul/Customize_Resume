@@ -7,7 +7,7 @@ from argparse import ArgumentParser
 
 parser = ArgumentParser()
 parser.add_argument("-code", help="", action = 'store_true')
-parser.add_argument("-code_folder", help="", action = 'store_true')
+parser.add_argument("-code_folder",'-f', help="", action = 'store_true')
 parser.add_argument("-o", help="", action = 'store_true')
 # parser.add_argument("resume_type")
 
@@ -23,9 +23,12 @@ if args.code_folder:
 
 type_dict = {
     'intern' : ['header','profile','education25','skill','work','research','honors'],
-    'full' : ['header','profile','education24','skill','work','research','honors']
+    'full' : ['header','profile','education24','skill','work','research','honors'],
+    'ds' : ['header','education25','skill','work','research','honors']
 }
 
+if args.o:
+    os.startfile(script_directory + '/output')
 os.chdir(script_directory + '/output')
 for resume_type in type_dict:
 
@@ -50,6 +53,3 @@ for filename in files:
         if not filename.lower().endswith('.pdf'):
             os.remove(file_path)
             print(f"Deleted: {filename}")
-
-if args.o:
-    os.startfile(script_directory + '/output')
